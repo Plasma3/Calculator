@@ -1,5 +1,69 @@
-$backgroundColor: lightblue;
+// Palette
+// https://coolors.co/484349-b0b2b8-cfd6ea-e63946-ff5666
+$c1: #484349;
+$c2: #B0B2B8;
+$c3: #CFD6EA;
+$c4: #E63946;
+$c5: #FF5666;
+
+$backgroundColor: $c1;
+
+$mainInputBorderColor: $c4;
+$mainInputBorderFocusColor: $c5;
+$mainInputHeight: auto;
+$mainInputTextColor: $c3;
+
+
+html {
+    height: 100%;
+}
 
 body {
+    height: 95%;
     background-color: $backgroundColor;
+}
+
+textarea {
+    width: 100%;
+    height: $mainInputHeight;
+    padding: 12px 20px;
+    // margin: 8px 0;
+    resize: none;
+    box-sizing: border-box;
+
+    border: none;
+    border-bottom: 2px solid $mainInputBorderColor;
+    outline: none;
+
+    transition: border 0.2s ease-in-out;
+
+    background-color: $backgroundColor;
+    color: $mainInputTextColor;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    text-align: center;
+    vertical-align: bottom;
+
+}
+
+textarea:focus {
+    border-bottom: 4px solid $mainInputBorderFocusColor;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.center {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 10px 0;
 }
