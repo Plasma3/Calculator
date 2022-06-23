@@ -6,7 +6,7 @@
         {
             "label": "Sass Compile",
             "type": "shell",
-            "command": "sass.cmd src/styles/style.scss src/styles/css/style.css",
+            "command": "sass.cmd assets/styles/style.scss assets/styles/css/style.css",
             "group": {
                 "kind": "build",
                 "isDefault": true
