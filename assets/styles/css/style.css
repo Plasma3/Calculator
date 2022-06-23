@@ -7,8 +7,10 @@ body {
   background-color: #484349;
 }
 
-textarea {
-  width: 100%;
+input[type=text] {
+  width: 60%;
+  min-width: min(100%, 400px);
+  max-width: 650px;
   height: auto;
   padding: 12px 20px;
   resize: none;
@@ -25,7 +27,7 @@ textarea {
   vertical-align: bottom;
 }
 
-textarea:focus {
+input[type=text]:focus {
   border-bottom: 4px solid #FF5666;
 }
 
