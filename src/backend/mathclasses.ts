@@ -1,20 +1,42 @@
-export class nodeExpression {
-
-    constructor(public terms: node[]) {
-        this.terms = terms;
-    }
-}
-
 export class node {
 
 }
 
-export class nodeNumber extends node {
-    constructor(public value: number) {
+
+
+export class nodeEqnSys extends node {
+
+}
+
+
+export class nodeEquation extends node {
+
+}
+
+
+export class nodeExpression extends node {
+    constructor(public terms: node[]) {
         super();
         
-        this.value = value;
+        this.terms = terms;
     }
 }
 
 
+export class nodeRatio extends node {
+
+}
+
+
+export class nodeUnary extends node {
+
+}
+
+
+export class nodePower extends node {
+
+}
+
+export class nodeAtom extends node {
+
+}

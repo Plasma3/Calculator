@@ -10,10 +10,10 @@
 ## expr
 - listof-((PLUS|MINUS) term)*
 
-## term
+## ratio (term)
 - listof-((MUL|DIV) factor)*
 
-## factor
+## unary (factor)
 - (PLUS|MINUS) factor
 - power
 
