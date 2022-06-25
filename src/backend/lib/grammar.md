@@ -24,3 +24,12 @@
 - VALUE
 - INT|FLOAT <!-- Should use VALUE instead -->
 - LPAREN expr (RPAREN)
+
+# Value
+- Integer
+- Rational Number
+    - Float (Rational Number)
+- Other
+    - $\pi$
+    - $e$
+    - $\log$ / $\ln$?

@@ -1,7 +1,9 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var mathclasses_1 = require("./mathclasses");
-// let foo = new expression([new nodeNumber(2)])
-var foo = new mathclasses_1.expression([new mathclasses_1.nodeNumber(2)]);
-console.log(foo);
+// import { nodeExpression, nodeNumber } from "./mathclasses";
+// // let foo = new expression([new nodeNumber(2)])
+// let foo = new nodeExpression([new nodeNumber(2)])
+// console.log(foo)
+var x = 5;
+x += 2;
+console.debug(x);
 //# sourceMappingURL=calc.js.map
