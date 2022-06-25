@@ -1,14 +1,17 @@
-export class Value {
-
+export enum ValueType {
+    INTEGER,
+    RATIONAL,
 }
 
-export class ValueInteger extends Value {
-    constructor(public number: number) {
-        super();
-        this.number = number;
-    }
+export interface ValueBase {
+    type: ValueType;
 }
 
-export class ValueRational extends Value {
+export interface ValueInteger extends ValueBase {
+    integer: number;
+}
 
+export interface ValueRational extends ValueBase {
+    over: number;
+    under: number;
 }
