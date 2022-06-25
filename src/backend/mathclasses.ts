@@ -1,21 +1,21 @@
-export class node {
+export class Node {
 
 }
 
 
 
-export class nodeEqnSys extends node {
+export class NodeEqnSys extends Node {
 
 }
 
 
-export class nodeEquation extends node {
+export class NodeEquation extends Node {
 
 }
 
 
-export class nodeExpression extends node {
-    constructor(public terms: node[]) {
+export class NodeExpression extends Node {
+    constructor(public terms: Node[]) {
         super();
         
         this.terms = terms;
@@ -23,20 +23,20 @@ export class nodeExpression extends node {
 }
 
 
-export class nodeRatio extends node {
+export class NodeRatio extends Node {
 
 }
 
 
-export class nodeUnary extends node {
+export class NodeUnary extends Node {
 
 }
 
 
-export class nodePower extends node {
+export class NodePower extends Node {
 
 }
 
-export class nodeAtom extends node {
+export class NodeAtom extends Node {
 
 }
