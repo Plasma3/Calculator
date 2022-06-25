@@ -1,4 +1,4 @@
-export class expression {
+export class nodeExpression {
 
     constructor(public terms: node[]) {
         this.terms = terms;
@@ -16,3 +16,5 @@ export class nodeNumber extends node {
         this.value = value;
     }
 }
+
+
