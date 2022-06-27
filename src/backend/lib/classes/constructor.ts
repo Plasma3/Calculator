@@ -1,7 +1,7 @@
 import * as Node from "./nodes"
 import { Position } from "./position"
 import { UnaryOperator } from "./unary_operator"
-import { ValueBase, ValueType } from "./value_classes"
+import { ValueBase, ValueInteger, ValueRational, ValueType } from "./value_classes"
 
 export function getPosition(
     index: number = 0,
@@ -11,13 +11,7 @@ export function getPosition(
     functionText: string = "test"
 
 ): Position {
-    return {
-        index: index,
-        line: line,
-        colum: colum,
-        func: func,
-        functionText: functionText
-    }
+    return new Position(index, line, colum, func, functionText)
 }
 
 export function getBaseNode(
@@ -85,5 +79,23 @@ export function getValueBase(
 ): ValueBase {
     return {
         type: valueType
+    }
+}
+export function getValueInteger(
+    value: number
+): ValueInteger {
+    return {
+        ...getValueBase(ValueType.INTEGER),
+        integer: value
+    }
+}
+export function getValueRational(
+    over: number,
+    under: number
+): ValueRational {
+    return {
+        ...getValueBase(),
+        over: over,
+        under: under
     }
 }

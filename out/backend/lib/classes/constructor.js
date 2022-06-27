@@ -11,7 +11,8 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getValueBase = exports.getNodeAtom = exports.getNodePower = exports.getNodeUnary = exports.getNodeRatio = exports.getNodeExpression = exports.getBaseNode = exports.getPosition = void 0;
+exports.getValueRational = exports.getValueInteger = exports.getValueBase = exports.getNodeAtom = exports.getNodePower = exports.getNodeUnary = exports.getNodeRatio = exports.getNodeExpression = exports.getBaseNode = exports.getPosition = void 0;
+var position_1 = require("./position");
 var value_classes_1 = require("./value_classes");
 function getPosition(index, line, colum, func, functionText) {
     if (index === void 0) { index = 0; }
@@ -19,13 +20,7 @@ function getPosition(index, line, colum, func, functionText) {
     if (colum === void 0) { colum = 0; }
     if (func === void 0) { func = "<test>"; }
     if (functionText === void 0) { functionText = "test"; }
-    return {
-        index: index,
-        line: line,
-        colum: colum,
-        func: func,
-        functionText: functionText
-    };
+    return new position_1.Position(index, line, colum, func, functionText);
 }
 exports.getPosition = getPosition;
 function getBaseNode(pos_start, pos_end) {
@@ -77,4 +72,12 @@ function getValueBase(valueType) {
     };
 }
 exports.getValueBase = getValueBase;
+function getValueInteger(value) {
+    return __assign(__assign({}, getValueBase(value_classes_1.ValueType.INTEGER)), { integer: value });
+}
+exports.getValueInteger = getValueInteger;
+function getValueRational(over, under) {
+    return __assign(__assign({}, getValueBase()), { over: over, under: under });
+}
+exports.getValueRational = getValueRational;
 //# sourceMappingURL=constructor.js.map

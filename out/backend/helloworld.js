@@ -24,8 +24,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var c = __importStar(require("./lib/classes/constructor"));
-var value_classes_1 = require("./lib/classes/value_classes");
-var foo = c.getNodeAtom(c.getBaseNode(), c.getValueBase(value_classes_1.ValueType.RATIONAL));
+var unary_operator_1 = require("./lib/classes/unary_operator");
+var foo = c.getNodeExpression(c.getBaseNode(), [
+    c.getNodeAtom(c.getBaseNode(), c.getValueInteger(5)),
+    c.getNodeUnary(c.getBaseNode(), unary_operator_1.UnaryOperator.MINUS, c.getNodeAtom(c.getBaseNode(), c.getValueInteger(3)))
+]);
 console.debug(foo);
 console.log();
 //# sourceMappingURL=helloworld.js.map
