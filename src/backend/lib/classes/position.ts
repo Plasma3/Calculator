@@ -1,4 +1,4 @@
-interface Pos {
+type Pos = {
     index: number;
     line: number;
     colum: number;

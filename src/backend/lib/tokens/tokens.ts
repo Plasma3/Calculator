@@ -17,7 +17,7 @@ export enum TT {
     EOF,
 }
 
-interface Tok {
+type Tok = {
     tokenType: TT;
     value: string;
     pos_start: Position;

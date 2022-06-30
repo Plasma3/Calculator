@@ -3,15 +3,7 @@ export enum ValueType {
     RATIONAL,
 }
 
-export interface ValueBase {
-    type: ValueType;
-}
+export type ValueBase = {type: ValueType}
 
-export interface ValueInteger extends ValueBase {
-    integer: number;
-}
-
-export interface ValueRational extends ValueBase {
-    over: number;
-    under: number;
-}
+export type ValueInteger = ValueBase & {integer: number}
+export type ValueRational = ValueBase & {over: number; under: number}
