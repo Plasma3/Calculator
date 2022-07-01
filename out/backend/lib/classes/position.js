@@ -1,36 +1,33 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEmptyPosition = exports.Position = void 0;
-var Position = /** @class */ (function () {
-    function Position(index, line, colum, func, functionText) {
+const constants_1 = require("../lexer/constants");
+class Position {
+    constructor(index, line, colum, context, script) {
         this.index = index;
         this.line = line;
         this.colum = colum;
-        this.func = func;
-        this.functionText = functionText;
+        this.context = context;
+        this.script = script;
     }
-    Position.prototype.advance = function (force) {
-        if (force === void 0) { force = false; }
+    advance(force = false) {
         this.index += 1;
         this.colum += 1;
         if (!force) {
-            if (this.functionText[this.index]) {
+            if (this.script[this.index] == constants_1.NEWLINE) {
                 this.line += 1;
                 this.colum = 0;
             }
         }
         return this;
-    };
-    return Position;
-}());
+    }
+    copy() {
+        return new Position(this.index, this.line, this.colum, this.context, this.script);
+    }
+}
 exports.Position = Position;
-function getEmptyPosition(index, line, colum, func, functionText) {
-    if (index === void 0) { index = 0; }
-    if (line === void 0) { line = 0; }
-    if (colum === void 0) { colum = 0; }
-    if (func === void 0) { func = ""; }
-    if (functionText === void 0) { functionText = ""; }
-    return new Position(index, line, colum, func, functionText);
+function getEmptyPosition(index = 0, line = 0, colum = 0, context = "", script = "") {
+    return new Position(index, line, colum, context, script);
 }
 exports.getEmptyPosition = getEmptyPosition;
 //# sourceMappingURL=position.js.map

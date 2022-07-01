@@ -1,6 +1,6 @@
 "use strict";
-var app = document.getElementById("app");
-var input = document.createElement("input");
+const app = document.getElementById("app");
+const input = document.createElement("input");
 input.id = "input";
 input.type = "text";
 app === null || app === void 0 ? void 0 : app.appendChild(input);

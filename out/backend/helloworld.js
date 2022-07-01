@@ -1,34 +1,36 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var c = __importStar(require("./lib/classes/constructor"));
-var unary_operator_1 = require("./lib/classes/unary_operator");
-var foo = c.getNodeExpression(c.getBaseNode(), [
-    c.getNodeAtom(c.getBaseNode(), c.getValueInteger(5)),
-    c.getNodeUnary(c.getBaseNode(), unary_operator_1.UnaryOperator.MINUS, c.getNodeAtom(c.getBaseNode(), c.getValueInteger(3)))
-]);
-console.debug(foo);
+const lexer_1 = require("./lib/lexer/lexer");
+// let foo = c.getNodeExpression(
+//     c.getBaseNode(),
+//     [
+//         c.getNodeAtom(
+//             c.getBaseNode(),
+//             c.getValueInteger(5),
+//         ),
+//         c.getNodeUnary(
+//             c.getBaseNode(),
+//             UnaryOperator.MINUS,
+//             c.getNodeAtom(
+//                 c.getBaseNode(),
+//                 c.getValueInteger(3)
+//             )
+//         )
+//     ]
+// )
+let input = "2* 2 +\t2  (4-2) ^   2 \n 1+1";
+let x = new lexer_1.Lexer("test", input).make_tokens();
+if (x[1] === null) {
+    console.log("     no errors");
+}
+else {
+    console.log(" --- ERRORS ---");
+    console.debug(x[1]);
+}
+console.debug(x[0]);
+console.log("===");
+console.log(input);
+console.log("===");
+console.log((0, lexer_1.stringifyTokens)(x[0]));
 console.log();
 //# sourceMappingURL=helloworld.js.map

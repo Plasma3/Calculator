@@ -7,11 +7,11 @@ export function getPosition(
     index: number = 0,
     line: number = 0,
     colum: number = 0,
-    func: string = "<test>",
-    functionText: string = "test"
+    context: string = "<test>",
+    script: string = "test"
 
 ): Position {
-    return new Position(index, line, colum, func, functionText)
+    return new Position(index, line, colum, context, script)
 }
 
 export function getBaseNode(
