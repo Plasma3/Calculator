@@ -5,6 +5,21 @@ export type ErrorBase = IndexedPosition & {
     details: string;
 };
 
+export function stringifyError(err: ErrorBase): string {
+    return `${ err.error_type }: ${err.details} at line ${err.pos_start.line} colum ${err.pos_start.colum}`
+    return err.error_type + ': ' + err.details + '\n';
+}
+function string_with_arrows(text: string, pos_start: Position, pos_end: Position): string {
+    let line = text.split('\n')[pos_start.line];
+    let subline = ' '.repeat(pos_start.colum - 1) + '^'.repeat(1 + pos_end.colum - pos_start.colum)
+
+    return `${line}\n${subline}`
+}
+export function display_error(err: ErrorBase) {
+    console.log(stringifyError(err));
+    console.log(string_with_arrows(err.pos_start.script, err.pos_start, err.pos_end));
+}
+
 // class TemplateError implements ErrorBase {
 //     error_type: string;
 //     constructor(

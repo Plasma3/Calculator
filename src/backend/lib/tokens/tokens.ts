@@ -3,21 +3,13 @@ import { getEmptyPosition, Position, IndexedPosition } from "../classes/position
 type Tok = IndexedPosition & {tokenType: TT; value: string};
 export type Tokens = Token[];
 export enum TT {
-    INT,
-    FLOAT,
+    INT,FLOAT,
 
-    PLUS,
-    MINUS,
-    MUL,
-    DIV,
-    POW,
+    Plus,Minus,Mul,Div,Pow,
 
-    lPAREN,
-    rPAREN,
+    OpenParen,CloseParen,
 
-    EOL,
-    EOF,
-    TAB
+    EOL,EOF,TAB
 }
 
 export class Token implements Tok {

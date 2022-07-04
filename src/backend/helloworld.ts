@@ -1,3 +1,4 @@
+import { display_error } from "./lib/classes/errors";
 import { Lexer, stringifyTokens } from "./lib/lexer/lexer";
 
 
@@ -19,7 +20,7 @@ import { Lexer, stringifyTokens } from "./lib/lexer/lexer";
 //     ]
 // )
 
-let input = "2* 2 +\t2  (4-2) ^   2 \n 1+1";
+let input = "21*  2 ,\n 2,2";
 
 let x = new Lexer("test", input).make_tokens();
 if (x[1] === null) {
@@ -27,6 +28,7 @@ if (x[1] === null) {
 } else {
     console.log(" --- ERRORS ---")
     console.debug(x[1]);
+    display_error(x[1]);
 }
 console.debug(x[0]);
 

@@ -15,23 +15,41 @@ function getBaseNode(pos_start = getPosition(), pos_end = getPosition()) {
 }
 exports.getBaseNode = getBaseNode;
 function getNodeExpression(baseNode = getBaseNode(), terms = []) {
-    return Object.assign(Object.assign({}, baseNode), { terms: terms });
+    return {
+        ...baseNode,
+        terms: terms
+    };
 }
 exports.getNodeExpression = getNodeExpression;
 function getNodeRatio(baseNode = getBaseNode(), over = [], under = null) {
-    return Object.assign(Object.assign({}, baseNode), { over: over, under: under });
+    return {
+        ...baseNode,
+        over: over,
+        under: under
+    };
 }
 exports.getNodeRatio = getNodeRatio;
 function getNodeUnary(baseNode = getBaseNode(), operator = null, unary = getBaseNode()) {
-    return Object.assign(Object.assign({}, baseNode), { operator: operator, unary: unary });
+    return {
+        ...baseNode,
+        operator: operator,
+        unary: unary
+    };
 }
 exports.getNodeUnary = getNodeUnary;
 function getNodePower(baseNode = getBaseNode(), atom = getBaseNode(), exponent = null) {
-    return Object.assign(Object.assign({}, baseNode), { atom: atom, exponent: exponent });
+    return {
+        ...baseNode,
+        atom: atom,
+        exponent: exponent
+    };
 }
 exports.getNodePower = getNodePower;
 function getNodeAtom(baseNode = getBaseNode(), value = getValueBase()) {
-    return Object.assign(Object.assign({}, baseNode), { value: value });
+    return {
+        ...baseNode,
+        value: value
+    };
 }
 exports.getNodeAtom = getNodeAtom;
 function getValueBase(valueType = value_classes_1.ValueType.INTEGER) {
@@ -41,11 +59,18 @@ function getValueBase(valueType = value_classes_1.ValueType.INTEGER) {
 }
 exports.getValueBase = getValueBase;
 function getValueInteger(value) {
-    return Object.assign(Object.assign({}, getValueBase(value_classes_1.ValueType.INTEGER)), { integer: value });
+    return {
+        ...getValueBase(value_classes_1.ValueType.INTEGER),
+        integer: value
+    };
 }
 exports.getValueInteger = getValueInteger;
 function getValueRational(over, under) {
-    return Object.assign(Object.assign({}, getValueBase()), { over: over, under: under });
+    return {
+        ...getValueBase(),
+        over: over,
+        under: under
+    };
 }
 exports.getValueRational = getValueRational;
 //# sourceMappingURL=constructor.js.map

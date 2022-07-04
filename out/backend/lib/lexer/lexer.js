@@ -6,19 +6,13 @@ const position_1 = require("../classes/position");
 const tokens_1 = require("../tokens/tokens");
 const constants_1 = require("./constants");
 class Lexer {
+    iter;
+    char_current = null;
+    char_next = null;
+    sub_skiped = false;
     constructor(context, script) {
-        this.current_char = null;
-        this.sub_skiped = false;
         this.iter = new position_1.Position(-1, 0, -1, context, script);
         this._advance();
-    }
-    _full_advance() {
-        if (this.sub_skiped) {
-            this.sub_skiped = false;
-        }
-        else {
-            this._advance();
-        }
     }
     _sub_advance() {
         this.sub_skiped = true;
@@ -26,18 +20,21 @@ class Lexer {
     }
     _advance() {
         this.iter.advance();
-        this.current_char = ((this.iter.index < this.iter.script.length) ?
+        this.char_current = ((this.iter.index < this.iter.script.length) ?
             this.iter.script[this.iter.index] : null);
+        this.char_next = ((this.iter.index + 1 < this.iter.script.length) ?
+            this.iter.script[this.iter.index + 1] : null);
     }
     _match(pattern) {
-        return ((this.current_char === null) ? false : pattern.includes(this.current_char));
+        return ((this.char_current === null) ? false : pattern.includes(this.char_current));
     }
     _make_number() {
         let num_str = '';
         let dot_count = false;
         let pos_start = this.iter;
-        while (this.current_char && constants_1.DIGITS_DOT.includes(this.current_char)) {
-            if (this.current_char === constants_1.DOT) {
+        let continue_loop = false;
+        do {
+            if (this.char_current === constants_1.DOT) {
                 if (dot_count) {
                     break;
                 }
@@ -45,30 +42,36 @@ class Lexer {
                 num_str += constants_1.DOT;
             }
             else {
-                num_str += this.current_char;
+                num_str += this.char_current;
             }
-            this._sub_advance();
-        }
+            continue_loop = false;
+            if (this.char_next && constants_1.DIGITS_DOT.includes(this.char_next)) {
+                this._advance();
+                continue_loop = true;
+            }
+        } while (continue_loop);
         return new tokens_1.Token((dot_count) ? tokens_1.TT.FLOAT : tokens_1.TT.INT, num_str, pos_start, this.iter);
     }
     make_tokens() {
         let tokens = [];
-        while (this.current_char !== null) {
-            if (this._match(constants_1.DIGITS)) {
+        while (this.char_current !== null) {
+            if (this._match(constants_1.EMPTY_SKIP)) {
+                tokens;
+            }
+            else if (this._match(constants_1.DIGITS)) {
                 tokens.push(this._make_number());
             }
-            else if (constants_1.SIMPLE_OP_TOKENS.has(this.current_char)) {
-                tokens.push(new tokens_1.Token(constants_1.SIMPLE_OP_TOKENS.get(this.current_char), this.iter));
-            }
-            else if (this._match(constants_1.EMPTY_SKIP)) {
+            else if (constants_1.SIMPLE_TOKEN_IDENTIFIERS.has(this.char_current)) {
+                tokens.push(new tokens_1.Token(constants_1.SIMPLE_TOKEN_IDENTIFIERS.get(this.char_current), this.iter));
             }
             else {
                 let pos_start = this.iter;
-                let char = this.current_char;
+                let char = this.char_current;
                 this._advance();
                 return [[], new errors_1.IllegalCharError(pos_start, this.iter, '"' + char + '"')];
             }
-            this._full_advance();
+            // Check if other parts of lexer has peek next character
+            (this.sub_skiped) ? this.sub_skiped = false : this._advance();
         }
         tokens.push(new tokens_1.Token(tokens_1.TT.EOF, this.iter));
         return [tokens, null];
@@ -78,10 +81,10 @@ exports.Lexer = Lexer;
 function stringifyTokens(tokens) {
     let out = '';
     tokens.forEach(i => {
+        out += i.value + ' ';
         if (i.tokenType == tokens_1.TT.EOF) {
             out += "\n";
         }
-        out += i.value + ' ';
         if (i.tokenType == tokens_1.TT.EOL) {
             out += '\n';
         }

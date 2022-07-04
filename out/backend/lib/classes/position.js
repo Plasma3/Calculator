@@ -3,6 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEmptyPosition = exports.Position = void 0;
 const constants_1 = require("../lexer/constants");
 class Position {
+    index;
+    line;
+    colum;
+    context;
+    script;
     constructor(index, line, colum, context, script) {
         this.index = index;
         this.line = line;

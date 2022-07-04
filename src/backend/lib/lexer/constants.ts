@@ -9,17 +9,17 @@ export const LETTERS = "abcdefghijklmnopqrstuvwxyz"
 export const LETTERS_DIGITS = DIGITS + LETTERS
 export const DIGITS_DOT = DIGITS + DOT;
 
-export const SIMPLE_OP_TOKENS = new Map<string, TT>([
-	["+", TT.PLUS],
-	["-", TT.MINUS], 
+export const SIMPLE_TOKEN_IDENTIFIERS = new Map<string, TT>([
+	["+", TT.Plus],
+	["-", TT.Minus], 
 	
-	["*", TT.MUL],
-	["/", TT.DIV],
+	["*", TT.Mul],
+	["/", TT.Div],
 	
-	["^", TT.POW],
+	["^", TT.Pow],
 
-	["(", TT.lPAREN],
-	[")", TT.rPAREN],
+	["(", TT.OpenParen],
+	[")", TT.CloseParen],
 
     ["\n", TT.EOL],
     ["\t", TT.TAB]

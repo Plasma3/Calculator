@@ -6,18 +6,22 @@ var TT;
 (function (TT) {
     TT[TT["INT"] = 0] = "INT";
     TT[TT["FLOAT"] = 1] = "FLOAT";
-    TT[TT["PLUS"] = 2] = "PLUS";
-    TT[TT["MINUS"] = 3] = "MINUS";
-    TT[TT["MUL"] = 4] = "MUL";
-    TT[TT["DIV"] = 5] = "DIV";
-    TT[TT["POW"] = 6] = "POW";
-    TT[TT["lPAREN"] = 7] = "lPAREN";
-    TT[TT["rPAREN"] = 8] = "rPAREN";
+    TT[TT["Plus"] = 2] = "Plus";
+    TT[TT["Minus"] = 3] = "Minus";
+    TT[TT["Mul"] = 4] = "Mul";
+    TT[TT["Div"] = 5] = "Div";
+    TT[TT["Pow"] = 6] = "Pow";
+    TT[TT["OpenParen"] = 7] = "OpenParen";
+    TT[TT["CloseParen"] = 8] = "CloseParen";
     TT[TT["EOL"] = 9] = "EOL";
     TT[TT["EOF"] = 10] = "EOF";
     TT[TT["TAB"] = 11] = "TAB";
 })(TT = exports.TT || (exports.TT = {}));
 class Token {
+    tokenType;
+    value;
+    pos_start;
+    pos_end;
     constructor(tokenTypeOrToken, valueOrPosStart = "", pos_start, pos_end) {
         // Calculate which Constructor is being used
         if (determineIfTok(tokenTypeOrToken)) {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const errors_1 = require("./lib/classes/errors");
 const lexer_1 = require("./lib/lexer/lexer");
 // let foo = c.getNodeExpression(
 //     c.getBaseNode(),
@@ -18,7 +19,7 @@ const lexer_1 = require("./lib/lexer/lexer");
 //         )
 //     ]
 // )
-let input = "2* 2 +\t2  (4-2) ^   2 \n 1+1";
+let input = "21*  2 ,\n 2,2";
 let x = new lexer_1.Lexer("test", input).make_tokens();
 if (x[1] === null) {
     console.log("     no errors");
@@ -26,6 +27,7 @@ if (x[1] === null) {
 else {
     console.log(" --- ERRORS ---");
     console.debug(x[1]);
+    (0, errors_1.display_error)(x[1]);
 }
 console.debug(x[0]);
 console.log("===");
