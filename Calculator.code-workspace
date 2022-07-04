@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"name": "/",
+			"path": "."
+		},
+		{
+			"name": "Assets",
+			"path": "assets"
+		},
+		{
+			"path": "..\\..\\Calculator"
+		}
+	],
+	"settings": {}
+}
