@@ -1,16 +1,25 @@
 {
-	"folders": [
-		{
-			"name": "/",
-			"path": "."
-		},
-		{
-			"name": "Assets",
-			"path": "assets"
-		},
-		{
-			"path": "..\\..\\Calculator"
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "name": "/",
+            "path": "."
+        },
+        {
+            "name": "Assets",
+            "path": "assets"
+        },
+        {
+            "name": "Backend",
+            "path": "src/backend"
+        },
+        {
+            "name": "Frontend",
+            "path": "src/frontend"
+        },
+        {
+            "name": "OLD - Python version",
+            "path": "..\\..\\Calculator"
+        },
+    ],
+    "settings": {}
 }
