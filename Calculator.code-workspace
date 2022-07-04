@@ -1,6 +1,10 @@
 {
     "folders": [
         {
+            "name": "Documentation",
+            "path": "docs"
+        },
+        {
             "name": "/",
             "path": "."
         },
@@ -20,10 +24,6 @@
             "name": "OLD - Python version",
             "path": "..\\..\\Calculator"
         },
-        {
-            "name": "Documentation",
-            "path": "docs"
-        }
     ],
     "settings": {}
 }
