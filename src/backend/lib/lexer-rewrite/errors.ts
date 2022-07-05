@@ -17,7 +17,7 @@ export function throw_error(err: PAM_Error, script: string | string[]) {
 }
 
 
-type PAM_Error = {
+export type PAM_Error = {
     errorKind: string;
     location: Location;
     details: string;

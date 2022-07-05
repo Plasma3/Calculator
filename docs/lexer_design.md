@@ -7,18 +7,21 @@ Implemented in [file lexer.ts](lexer.ts)
 ```mermaid
 graph LR 
 i[(<b><i>outside)]
-a(["lex_file(<i> filepath</i>: string )"])
-b(["lex_string(<i> string</i>: string )"])
+subgraph "<h1 style='color: black'>=== Lexer ==="
+co(("Constructor( <i>context</i>: string )"))
+a(["lex_file( )"])
+b(["lex_string(<i> string</i>: string | null )"])
 c1("lex_line( <i>n</i>: number, <i>line</i>: string )")
 c2("lex_line( <i>n</i>: number, <i>line</i>: string )")
 c3("lex_line( <i>n</i>: number, <i>line</i>: string )")
-b2(["<u>put into list"])-.-b
+b2[["<u>put into list"]]-.-b
+r(("return : [ Token[ ], Error | null ]"))
+end
 o[(<b><i>return)]
-
-i==>a==>b
-i-->b-->c1-->b2
+i==>co==" .method "==>a=="null"==>b
+co==" .method "==>b-->c1-->b2
 b-->c2-->b2
-b-->c3-->b2--"(Token[], Error | null)"-->o
+b-->c3-->b2-->r-->o
 ```
 ## Specs
 ### Input
