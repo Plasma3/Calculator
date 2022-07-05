@@ -25,5 +25,7 @@
             "path": "..\\..\\Calculator"
         },
     ],
-    "settings": {}
+    "settings": {
+        "todo-tree.tree.showBadges": true
+    }
 }

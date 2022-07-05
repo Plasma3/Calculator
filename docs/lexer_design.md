@@ -25,13 +25,14 @@ b-->c3-->b2--"(Token[], Error | null)"-->o
 `string`
 ### Output
 `tuple` of a list of all `tokens` (`Token[]`) and ev `error`
-## Involved Types
-### Token
-In  [Tokens.ts](../tokens/tokens.ts)
-Has a tokenType (enum), location and eventuall value
-
 ```ts
-{
+tuple[Tokens[] | null, PAM_Error | null]
+```
+## Involved Types
+### `Token`
+In  [Tokens.ts](../tokens/tokens.ts)
+```ts
+type Token = {
     tokenKind: TokenKind;
     location: Loc;
     value?: string;
@@ -40,24 +41,42 @@ Has a tokenType (enum), location and eventuall value
 ### Tokenkind
 See [Tokens.ts](../tokens/tokens.ts)
 Of type `enum`
-### Location (Loc)
+### `Location` and `Pos`
 In [Position.ts](../classes/position.ts)
+
+#### `Pos` points to a single character 
 ```ts
-{
+// Use the class position for use of the position.advance()
+// ISSUE: #10 Class may be removed and a advance(pos: Pos): Pos may be used instead
+type Pos = { 
     context: string; // Filepath or console input
 
     index: number; // Includes newlines (\n)
     line: number; // First row is 0
-    start_colum: number; // First char is 0
+    colum: number; // First char is 0
+}
+```
+#### `Location` refers to section of script
+```ts
+class Location = {
+    ...Pos // extends from Pos
+
     end_colum: number; // First char is 0
     // if start_col == end_col then loc is just one char
-    
-    //? Maybe dont use this and just check if end_line exists 
+
     multiline: boolean; // if multiline
     end_line?: number; // should not exists if loc is oneline
 }
 ```
-#### Error
-
-!!!todo Add this
+### Error (`PAM_Error`)
+```ts
+type PAM_Error = {
+    errorKind: string; // the 
+    location: Location;
+    details: string;
+}
+```
+#### Types of Errors
+See [Error documentation]()
+  
 
