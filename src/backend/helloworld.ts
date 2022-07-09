@@ -1,40 +1,24 @@
-import { display_error } from "./lib/classes/errors";
-import { Lexer, stringifyTokens } from "./lib/lexer/lexer";
+import Lexer from "./lib/lexer-rewrite/lexer-rewrite";
+import { stringifyTokens } from "./lib/lexer-rewrite/token";
 
+let input =
+    `2+ 5 -2(2*2+2)=123
+23,
+2.1
+5-2^2-23+2.2=2`;
 
-// let foo = c.getNodeExpression(
-//     c.getBaseNode(),
-//     [
-//         c.getNodeAtom(
-//             c.getBaseNode(),
-//             c.getValueInteger(5),
-//         ),
-//         c.getNodeUnary(
-//             c.getBaseNode(),
-//             UnaryOperator.MINUS,
-//             c.getNodeAtom(
-//                 c.getBaseNode(),
-//                 c.getValueInteger(3)
-//             )
-//         )
-//     ]
-// )
+console.log(input);
+console.log("\n===\n");
+const ctx = "<TEST:helloworld.ts>";
+const lexer = new Lexer();
 
-let input = "21*  2 ,\n 2,2";
+let x = lexer.lex_string(ctx, input);
 
-let x = new Lexer("test", input).make_tokens();
 if (x[1] === null) {
     console.log("     no errors");
 } else {
-    console.log(" --- ERRORS ---")
+    console.error("\n --- ERRORS ---")
     console.debug(x[1]);
-    display_error(x[1]);
 }
-console.debug(x[0]);
-
-console.log("===");
-console.log(input);
-console.log("===");
+console.log("\n===\n");
 console.log(stringifyTokens(x[0]));
-
-console.log();

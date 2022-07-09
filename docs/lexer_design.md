@@ -23,6 +23,103 @@ co==" .method "==>b-->c1-->b2
 b-->c2-->b2
 b-->c3-->b2-->r-->o
 ```
+
+## Class Diagram
+```mermaid
+    classDiagram
+    class Lexer {
+        -string line
+        -string? current_char
+        -string? next_char
+        -string? previous_char
+        -Pos iter
+        +lex_file(?) LexerResult
+        +lex_string(-) LexerResult
+        -lex_line(-) Tokens|PAM_Error
+        -init_line(-)
+        -advance()
+        -match(-) boolean
+        -loc_current_char() Location
+        -make_number() Token
+    }
+    class LexerResult {
+        [Tokens, PAM_Error?]
+    }
+
+    class Pos {
+        string context
+        number index
+        number line
+        number colum
+    }
+    class Position {
+        Pos
+        advance(?)
+        copy(?)
+    }
+    class Location {
+        Pos
+        number end_col
+        boolean multiline
+        number end_line?
+        advance(?)
+    }
+
+    class TokenKind
+    class Token {
+        tokenKind tokenKind
+        Location location
+        string value?
+    }
+    class Tokens {
+        Token[]
+    }
+
+    class PAM_Error {
+        string errorKind
+        Location location
+        string details
+    }
+    class Errors {
+        IllegalCharError
+        InvalidSyntaxError
+        UnsupportedOperationError
+        RTError
+    }
+
+    <<type>> Pos
+    <<type>> Token
+    <<type>> Tokens
+    <<type>> LexerResult
+    <<enum>> TokenKind
+    <<type>> PAM_Error
+    <<implementations>> Errors
+
+
+
+    Token <.. Location
+    Token <.. TokenKind
+    Tokens *-- Token
+    LexerResult *-- Tokens
+    LexerResult *-- PAM_Error
+    PAM_Error <.. Location
+    PAM_Error <.. TokenKind
+    Errors <|-- PAM_Error
+    Position<|--Pos
+    Location<|--Position
+    Location .. Pos
+
+    Lexer <.. Pos
+    Lexer o-- Token
+    Lexer o-- Tokens
+    Lexer o-- TokenKind
+    Lexer o-- Location
+    Lexer o-- Errors
+    Lexer o-- PAM_Error
+    Lexer *-- LexerResult
+
+```
+
 ## Specs
 ### Input
 `string`

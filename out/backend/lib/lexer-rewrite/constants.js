@@ -18,7 +18,9 @@ exports.SIMPLE_TOKEN_IDENTIFIERS = new Map([
     ["^", token_1.TokenKind.Pow],
     ["(", token_1.TokenKind.OpenParen],
     [")", token_1.TokenKind.CloseParen],
+    ["=", token_1.TokenKind.Equal],
+    [",", token_1.TokenKind.Comma],
     ["\n", token_1.TokenKind.EOL],
-    ["\t", token_1.TokenKind.TAB]
+    ["\t", token_1.TokenKind.TAB],
 ]);
 //# sourceMappingURL=constants.js.map

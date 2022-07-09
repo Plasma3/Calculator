@@ -23,6 +23,9 @@ export const SIMPLE_TOKEN_IDENTIFIERS = new Map<string, TokenKind>([
 	["(", TokenKind.OpenParen],
 	[")", TokenKind.CloseParen],
 
+	["=", TokenKind.Equal],
+	[",", TokenKind.Comma],
+
 	["\n", TokenKind.EOL],
-	["\t", TokenKind.TAB]
+	["\t", TokenKind.TAB],
 ]);

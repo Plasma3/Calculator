@@ -3,14 +3,22 @@ import { Location } from "./position";
 
 
 
-export function throw_error(err: PAM_Error, script: string | string[]) {
+export function throw_error(err: PAM_Error, script: string | string[], current_line = false) {
     console.error(PAM_CONSOLE_IDENTITY + `${err.location.context}:${err.location.line}:${err.location.colum}: ${err.errorKind}: ${err.details}`)
-    if (err.location.multiline) {
-        console.error(PAM_CONSOLE_IDENTITY + "/errors.ts IMPLEMENTATION_ERROR: Can't display multiline error yet");
-        return;
+    let line: string = "";
+    if (current_line) {
+        if (typeof script === "string") {
+            line = script;
+        }
     }
-    let lines = (typeof script === "string") ? script.split('\n') : script;
-    let line = lines[err.location.line];
+    else {
+        if (err.location.multiline) {
+            console.error(PAM_CONSOLE_IDENTITY + "/errors.ts IMPLEMENTATION_ERROR: Can't display multiline error yet");
+            return;
+        }
+        let lines = (typeof script === "string") ? script.split('\n') : script;
+        line = lines[err.location.line];
+    }
     let subline = PAM_CONSOLE_IDENTITY + ' '.repeat(err.location.colum) + '^'.repeat(1 + err.location.end_col - err.location.colum);
     // let subline = ' '.repeat(err.location.colum - 1) + '^'.repeat(1 + err.location.colum - err.location.end_col)
     console.error(PAM_CONSOLE_IDENTITY + `${line}\n${subline}`);
