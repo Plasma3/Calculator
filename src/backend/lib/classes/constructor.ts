@@ -1,5 +1,5 @@
 import * as Node from "./nodes"
-import { Position } from "./position"
+import { getPos, Position } from "./position"
 import { UnaryOperator } from "./unary_operator"
 import { ValueBase, ValueInteger, ValueRational, ValueType } from "./value_classes"
 
@@ -11,7 +11,7 @@ export function getPosition(
     script: string = "test"
 
 ): Position {
-    return new Position(index, line, colum, context, script)
+    return new Position(getPos(context, index, line, colum))
 }
 
 export function getBaseNode(

@@ -1,5 +1,5 @@
-import * as Error from "./lib/lexer-rewrite/errors"
-import {getPos, Location} from "./lib/lexer-rewrite/position"
+import * as Error from "./lib/classes/errors"
+import {getPos, Location} from "./lib/classes/position"
 
 
 

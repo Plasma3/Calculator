@@ -1,38 +1,47 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEmptyPosition = exports.Position = void 0;
-const constants_1 = require("../lexer/constants");
+exports.getPos = exports.Location = exports.Position = void 0;
 class Position {
+    context;
     index;
     line;
     colum;
-    context;
-    script;
-    constructor(index, line, colum, context, script) {
-        this.index = index;
-        this.line = line;
-        this.colum = colum;
-        this.context = context;
-        this.script = script;
+    constructor(pos) {
+        this.context = pos.context;
+        this.index = pos.index;
+        this.line = pos.line;
+        this.colum = pos.colum;
     }
-    advance(force = false) {
-        this.index += 1;
-        this.colum += 1;
-        if (!force) {
-            if (this.script[this.index] == constants_1.NEWLINE) {
-                this.line += 1;
-                this.colum = 0;
-            }
-        }
-        return this;
-    }
-    copy() {
-        return new Position(this.index, this.line, this.colum, this.context, this.script);
-    }
+    advance() { }
+    copy() { }
 }
 exports.Position = Position;
-function getEmptyPosition(index = 0, line = 0, colum = 0, context = "", script = "") {
-    return new Position(index, line, colum, context, script);
+class Location extends Position {
+    end_col;
+    end_line;
+    multiline;
+    constructor(pos, end_col, end_line) {
+        super(pos);
+        this.end_col = end_col;
+        this.end_line = end_line;
+        this.multiline = (end_line != undefined);
+    }
+    advance = () => { };
 }
-exports.getEmptyPosition = getEmptyPosition;
+exports.Location = Location;
+function getPos(context, index, line, colum) {
+    return {
+        context: context,
+        index: index,
+        line: line,
+        colum: colum
+    };
+}
+exports.getPos = getPos;
+// let y = new Location({context: "", colum: 0, index: 0, line: 0}, 0);
+// let z = {...y};
+// z.colum = 1;
+// console.log(y);
+// console.log(z);
+// console.log(z == y);
 //# sourceMappingURL=position.js.map

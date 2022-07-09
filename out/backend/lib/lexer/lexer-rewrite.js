@@ -146,4 +146,4 @@ class Lexer {
     ;
 }
 exports.default = Lexer;
-//# sourceMappingURL=lexer.js.map
+//# sourceMappingURL=lexer-rewrite.js.map

@@ -1,4 +1,4 @@
-import { Location } from "./position";
+import { Location } from "../classes/position";
 
 export type Tokens = Token[];
 export enum TokenKind {

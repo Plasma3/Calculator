@@ -4,7 +4,7 @@ exports.getValueRational = exports.getValueInteger = exports.getValueBase = expo
 const position_1 = require("./position");
 const value_classes_1 = require("./value_classes");
 function getPosition(index = 0, line = 0, colum = 0, context = "<test>", script = "test") {
-    return new position_1.Position(index, line, colum, context, script);
+    return new position_1.Position((0, position_1.getPos)(context, index, line, colum));
 }
 exports.getPosition = getPosition;
 function getBaseNode(pos_start = getPosition(), pos_end = getPosition()) {

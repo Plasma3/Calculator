@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Error = __importStar(require("./lib/lexer-rewrite/errors"));
-const position_1 = require("./lib/lexer-rewrite/position");
+const Error = __importStar(require("./lib/classes/errors"));
+const position_1 = require("./lib/classes/position");
 Error.throw_error(new Error.IllegalCharError(new position_1.Location((0, position_1.getPos)("/src/backend/calc.ts", 7, 1, 7), 15), "This is a error throwing test"), "12345\n1231241241iuhaiuhasiuhasiubd");
 //# sourceMappingURL=calc.js.map
