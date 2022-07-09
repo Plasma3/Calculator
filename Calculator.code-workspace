@@ -1,0 +1,31 @@
+{
+    "folders": [
+        {
+            "name": "Documentation",
+            "path": "docs"
+        },
+        {
+            "name": "/",
+            "path": "."
+        },
+        {
+            "name": "Assets",
+            "path": "assets"
+        },
+        {
+            "name": "Backend",
+            "path": "src/backend"
+        },
+        {
+            "name": "Frontend",
+            "path": "src/frontend"
+        },
+        {
+            "name": "OLD - Python version",
+            "path": "..\\..\\Calculator"
+        },
+    ],
+    "settings": {
+        "todo-tree.tree.showBadges": true
+    }
+}

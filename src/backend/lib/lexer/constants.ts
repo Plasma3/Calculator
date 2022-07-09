@@ -1,4 +1,6 @@
-import { TT } from "../tokens/tokens";
+import { TokenKind } from "../tokens/token";
+
+export const PAM_CONSOLE_IDENTITY = "[PAM] : ";
 
 export const DOT = ".";
 export const NEWLINE = "\n"
@@ -9,18 +11,21 @@ export const LETTERS = "abcdefghijklmnopqrstuvwxyz"
 export const LETTERS_DIGITS = DIGITS + LETTERS
 export const DIGITS_DOT = DIGITS + DOT;
 
-export const SIMPLE_OP_TOKENS = new Map<string, TT>([
-	["+", TT.PLUS],
-	["-", TT.MINUS], 
-	
-	["*", TT.MUL],
-	["/", TT.DIV],
-	
-	["^", TT.POW],
+export const SIMPLE_TOKEN_IDENTIFIERS = new Map<string, TokenKind>([
+	["+", TokenKind.Plus],
+	["-", TokenKind.Minus],
 
-	["(", TT.lPAREN],
-	[")", TT.rPAREN],
+	["*", TokenKind.Mul],
+	["/", TokenKind.Div],
 
-    ["\n", TT.EOL],
-    ["\t", TT.TAB]
+	["^", TokenKind.Pow],
+
+	["(", TokenKind.OpenParen],
+	[")", TokenKind.CloseParen],
+
+	["=", TokenKind.Equal],
+	[",", TokenKind.Comma],
+
+	["\n", TokenKind.EOL],
+	["\t", TokenKind.TAB],
 ]);

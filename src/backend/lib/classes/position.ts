@@ -1,50 +1,58 @@
-import { NEWLINE } from "../lexer/constants";
+export type Pos = {
+    context: string; // Filepath or console input
 
-type Pos = {
+    index: number; // Includes newlines (\n)
+    line: number;
+    colum: number;
+}
+
+
+export class Position implements Pos { // TODO maybe change this to type
+    context: string;
+
     index: number;
     line: number;
     colum: number;
-    context: string;
-    script: string;
-}
-export type IndexedPosition = {
-    pos_start: Position;
-    pos_end: Position;
-}
-export class Position implements Pos {
-    constructor(
-        public index: number, 
-        public line: number, 
-        public colum: number, 
-        public context: string, 
-        public script: string
-        ) {}
 
-    advance(force: boolean = false): Position {
-        this.index += 1;
-        this.colum += 1;
-
-        if (!force) {
-            if (this.script[this.index] == NEWLINE) {
-                this.line += 1;
-                this.colum = 0;
-            }
-        }
-
-        return this;
+    constructor(pos: Pos) {
+        this.context = pos.context;
+        this.index = pos.index;
+        this.line = pos.line;
+        this.colum = pos.colum;
     }
-    copy() {
-        return new Position(this.index, this.line, this.colum, this.context, this.script);
+
+    advance() { }
+    copy() { }
+}
+
+export class Location extends Position {
+    multiline: boolean;
+
+    constructor(pos: Pos,
+        public end_col: number,
+        public end_line?: number
+    ) {
+        super(pos);
+        this.multiline = (end_line != undefined)
+    }
+
+    advance = () => { }
+}
+
+
+export function getPos(context: string, index: number, line: number, colum: number): Pos {
+    return {
+        context: context,
+        index: index,
+        line: line,
+        colum: colum
     }
 }
 
-export function getEmptyPosition(
-    index: number = 0,
-    line: number = 0,
-    colum: number = 0,
-    context: string = "",
-    script: string = ""
+// let y = new Location({context: "", colum: 0, index: 0, line: 0}, 0);
+// let z = {...y};
+// z.colum = 1;
 
-): Position {
-    return new Position(index, line, colum, context, script)
-}
+// console.log(y);
+// console.log(z);
+// console.log(z == y);

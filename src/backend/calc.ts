@@ -1,11 +1,10 @@
-// import { nodeExpression, nodeNumber } from "./mathclasses";
+import * as Error from "./lib/classes/errors"
+import {getPos, Location} from "./lib/classes/position"
 
-// // let foo = new expression([new nodeNumber(2)])
 
-// let foo = new nodeExpression([new nodeNumber(2)])
 
-// console.log(foo)
-
-let x = 5;
-x += 2;
-console.debug(x);
+Error.throw_error(
+    new Error.IllegalCharError(
+        new Location(getPos("/src/backend/calc.ts", 7, 1, 7), 15),
+        "This is a error throwing test"
+    ), "12345\n1231241241iuhaiuhasiuhasiubd");

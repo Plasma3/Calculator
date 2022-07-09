@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = require("./constants");
-const errors_1 = require("../classes/errors");
-const position_1 = require("../classes/position");
-const token_1 = require("../tokens/token");
+const errors_1 = require("./errors");
+const position_1 = require("./position");
+const token_1 = require("./token");
 class Lexer {
     line = "";
     current_char = null;
@@ -146,4 +146,4 @@ class Lexer {
     ;
 }
 exports.default = Lexer;
-//# sourceMappingURL=lexer.js.map
+//# sourceMappingURL=lexer-rewrite.js.map

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RTError = exports.UnsupportedOperationError = exports.InvalidSyntaxError = exports.IllegalCharError = exports.throw_error = void 0;
-const constants_1 = require("../lexer/constants");
+const constants_1 = require("./constants");
 function throw_error(err, script, current_line = false) {
     console.error(constants_1.PAM_CONSOLE_IDENTITY + `${err.location.context}:${err.location.line}:${err.location.colum}: ${err.errorKind}: ${err.details}`);
     let line = "";

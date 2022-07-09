@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SIMPLE_TOKEN_IDENTIFIERS = exports.DIGITS_DOT = exports.LETTERS_DIGITS = exports.LETTERS = exports.DIGITS = exports.EMPTY_SKIP = exports.NEWLINE = exports.DOT = exports.PAM_CONSOLE_IDENTITY = void 0;
-const token_1 = require("../tokens/token");
+const token_1 = require("./token");
 exports.PAM_CONSOLE_IDENTITY = "[PAM] : ";
 exports.DOT = ".";
 exports.NEWLINE = "\n";
