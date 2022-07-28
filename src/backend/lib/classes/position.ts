@@ -2,7 +2,7 @@ export type Pos = {
     context: string; // Filepath or console input
 
     index: number; // Includes newlines (\n)
-    line: number;
+    line: number; 
     colum: number;
 }
 

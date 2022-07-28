@@ -1,29 +1,29 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
+import Lexer from "./lib/lexer/lexer";
+import { stringifyTokens } from "./lib/tokens/token";
+export default function calc(input) {
+    // let input =
+    // `2+ 5 -2(2*2+2)=123
+    // 2 3,2.1
+    // 5-2^2-23+2.2=2`;
+    var ctx = "<TEST:helloworld.ts>";
+    console.group("New instance of ".concat(ctx, " at ").concat((new Date()).toLocaleString()));
+    console.log("> ".concat(input));
+    console.log("===");
+    var lexer = new Lexer();
+    var x = lexer.lex_string(ctx, input);
+    var output = "";
+    if (x[1] === null) {
+        console.log("     no errors");
+        console.log("===");
+        output = stringifyTokens(x[0]);
+        console.log(output);
     }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const Error = __importStar(require("./lib/classes/errors"));
-const position_1 = require("./lib/classes/position");
-Error.throw_error(new Error.IllegalCharError(new position_1.Location((0, position_1.getPos)("/src/backend/calc.ts", 7, 1, 7), 15), "This is a error throwing test"), "12345\n1231241241iuhaiuhasiuhasiubd");
+    else {
+        console.error("--- ERRORS ---");
+        console.debug(x[1]);
+        console.log("===");
+    }
+    console.groupEnd();
+    return output;
+}
 //# sourceMappingURL=calc.js.map

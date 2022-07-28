@@ -37,15 +37,7 @@ export default class Lexer {
 			acc_index += line.length + 1;
 			line_number++;
 		}
-		// lines.forEach((line, line_number) => { // TODO Rewrite for-loop so it can call return on line 36 and exit this.lex_string()
-		// 	line_tokens = this.lex_line(line_number, acc_index, line);
-		// 	if (Array.isArray(line_tokens)) {
-		// 		tokens.push(...line_tokens);
-		// 	}
-		// 	else {
-		// 		return [tokens, line_tokens]
-		// 	}
-		// });
+
 		tokens.push({
 			tokenKind: TokenKind.EOF,
 			location: new Location(this.iter, this.iter.colum)

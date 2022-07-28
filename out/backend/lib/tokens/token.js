@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.stringifyTokens = exports.TokenKind = void 0;
-var TokenKind;
+export var TokenKind;
 (function (TokenKind) {
     TokenKind[TokenKind["INT"] = 0] = "INT";
     TokenKind[TokenKind["FLOAT"] = 1] = "FLOAT";
@@ -17,10 +14,10 @@ var TokenKind;
     TokenKind[TokenKind["EOL"] = 11] = "EOL";
     TokenKind[TokenKind["EOF"] = 12] = "EOF";
     TokenKind[TokenKind["TAB"] = 13] = "TAB";
-})(TokenKind = exports.TokenKind || (exports.TokenKind = {}));
-function stringifyTokens(tokens) {
-    let out = '';
-    tokens.forEach(i => {
+})(TokenKind || (TokenKind = {}));
+export function stringifyTokens(tokens) {
+    var out = '';
+    tokens.forEach(function (i) {
         if (i.tokenKind === TokenKind.EOF) {
             out += "\n";
         }
@@ -38,5 +35,4 @@ function stringifyTokens(tokens) {
     });
     return out;
 }
-exports.stringifyTokens = stringifyTokens;
 //# sourceMappingURL=token.js.map
