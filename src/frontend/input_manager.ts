@@ -1,8 +1,9 @@
-const app = document.getElementById("app");
+import calc from "../backend/calc.js";
 
+const app = document.getElementById("app");
 const input = document.createElement("input");
 
-input.id = "input";
+input.id = "input"; 
 input.type = "text";
 
 app?.appendChild(input);
@@ -12,6 +13,10 @@ input.addEventListener("keypress", function(event) {
         event.preventDefault();
         
         input.blur();
-        console.log(input.value);
+
+        let x = calc(input.value);
+
+        input.value = "";
     }
 })
+

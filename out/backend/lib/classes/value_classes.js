@@ -1,9 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValueType = void 0;
-var ValueType;
+export var ValueType;
 (function (ValueType) {
     ValueType[ValueType["INTEGER"] = 0] = "INTEGER";
     ValueType[ValueType["RATIONAL"] = 1] = "RATIONAL";
-})(ValueType = exports.ValueType || (exports.ValueType = {}));
+})(ValueType || (ValueType = {}));
 //# sourceMappingURL=value_classes.js.map

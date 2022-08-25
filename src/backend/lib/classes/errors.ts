@@ -21,7 +21,8 @@ export function throw_error(err: PAM_Error, script: string | string[], current_l
     }
     let subline = PAM_CONSOLE_IDENTITY + ' '.repeat(err.location.colum) + '^'.repeat(1 + err.location.end_col - err.location.colum);
     // let subline = ' '.repeat(err.location.colum - 1) + '^'.repeat(1 + err.location.colum - err.location.end_col)
-    console.error(PAM_CONSOLE_IDENTITY + `${line}\n${subline}`);
+    console.error(PAM_CONSOLE_IDENTITY + `${line}`);
+    console.error(`${subline}`);
 }
 
 
