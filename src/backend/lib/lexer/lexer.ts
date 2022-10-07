@@ -1,4 +1,4 @@
-import { DIGITS_DOT, DOT, EMPTY_SKIP, SIMPLE_TOKEN_IDENTIFIERS } from "./constants";
+import * as C from "./constants";
 import { IllegalCharError, PAM_Error, throw_error } from "../classes/errors";
 import { getPos, Location, Pos } from "../classes/position";
 import { TokenKind, Tokens, Token } from "../tokens/token";
@@ -50,16 +50,19 @@ export default class Lexer {
 		this.init_line(line_number, acc_offset, line);
 
 		while (this.current_char !== null) {
-			if (this.match(EMPTY_SKIP)) { }
-			else if (this.match(DIGITS_DOT)) {
+			if (this.match(C.EMPTY_SKIP)) { }
+			else if (this.match(C.DIGITS_DOT)) {
 				tokens.push(this.make_number());
 			}
-			else if (SIMPLE_TOKEN_IDENTIFIERS.has(this.current_char)) {
+			else if (C.SIMPLE_TOKEN_IDENTIFIERS.has(this.current_char)) {
 				tokens.push({
-					tokenKind: SIMPLE_TOKEN_IDENTIFIERS.get(this.current_char)!,
+					tokenKind: C.SIMPLE_TOKEN_IDENTIFIERS.get(this.current_char)!,
 					location: new Location(this.iter, this.iter.colum),
 					value: this.current_char
 				});
+			}
+			else if (this.match(C.WORD_START)) {
+				tokens.push(this.make_word());
 			}
 			else {
 				let err = new IllegalCharError(this.loc_current_char(), `"${this.current_char}"`);
@@ -75,7 +78,7 @@ export default class Lexer {
 		})
 		return tokens;
 	}
-
+	
 	private init_line(line_number: number, acc_offset: number, line: string) {
 		if (line.length > 0) {
 			this.previous_char = null;
@@ -89,7 +92,7 @@ export default class Lexer {
 			this.iter.colum = 0;
 		}
 	};
-
+	
 	private advance() {
 		this.iter.index += 1;
 		this.iter.colum += 1;
@@ -107,33 +110,33 @@ export default class Lexer {
 		else {
 			this.current_char = null;
 		}
-
+		
 	};
-
+	
 	private match(pattern: string): boolean {
 		return ((this.current_char === null) ? false : pattern.includes(this.current_char))
 	};
-
+	
 	private loc_current_char(): Location {
 		return new Location(this.iter, this.iter.colum);
-	}
-
+	};
+	
 	private make_number(): Token {
 		let num_str = '';
 		let dot_count = false;
 		let pos_start = { ...this.iter };
 		let continue_loop = false;
-
+		
 		do {
-			if (this.current_char === DOT) {
+			if (this.current_char === C.DOT) {
 				if (dot_count) { break; }
 				dot_count = true;
-				num_str += DOT;
+				num_str += C.DOT;
 			} else {
 				num_str += this.current_char;
 			}
 			continue_loop = false;
-			if (this.next_char && DIGITS_DOT.includes(this.next_char)) {
+			if (this.next_char && C.DIGITS_DOT.includes(this.next_char)) {
 				this.advance();
 				continue_loop = true;
 			}
@@ -145,4 +148,21 @@ export default class Lexer {
 			value: num_str
 		}
 	};
-}
+	
+	private make_word(): Token {
+		let word = this.current_char!;
+		let pos_start = { ...this.iter };
+		
+		while (this.next_char && C.WORD_LETTERS.includes(this.next_char)) {
+			this.advance();
+			word += this.current_char;
+			
+		}
+		return {
+			tokenKind: TokenKind.WORD,
+			location: new Location(pos_start, this.iter.colum),
+			value: word
+		}
+	};
+
+};

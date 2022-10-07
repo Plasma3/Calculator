@@ -10,7 +10,7 @@ export enum TokenKind {
 
     Equal, Comma,
 
-    Word,
+    WORD,
 
     EOL, EOF, TAB
 }
@@ -27,7 +27,7 @@ export function stringifyTokens(tokens: Tokens): string {
 		if (i.tokenKind === TokenKind.EOF) { out += "\n" }
 		else if (i.tokenKind === TokenKind.EOL) { out += '\n' }
         else {
-            out += ((i.tokenKind === TokenKind.INT || i.tokenKind === TokenKind.FLOAT) ? i.value : TokenKind[i.tokenKind]) + ' '
+            out += ((i.tokenKind === TokenKind.WORD) ? `(${i.value})` : ((i.tokenKind === TokenKind.INT || i.tokenKind === TokenKind.FLOAT) ? i.value : TokenKind[i.tokenKind])) + ' '
         }
 		// else if (i.tokenKind === TokenKind.INT || i.tokenKind === TokenKind.FLOAT) {
 		// 	out += i.value + ' ';	

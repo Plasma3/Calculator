@@ -8,8 +8,13 @@ export const EMPTY_SKIP = " \t"
 export const DIGITS = "1234567890"
 export const LETTERS = "abcdefghijklmnopqrstuvwxyz"
 
+export const UNDERLINE = "_";
+
 export const LETTERS_DIGITS = DIGITS + LETTERS
 export const DIGITS_DOT = DIGITS + DOT;
+
+export const WORD_START = LETTERS + UNDERLINE;
+export const WORD_LETTERS = LETTERS_DIGITS + UNDERLINE;
 
 export const SIMPLE_TOKEN_IDENTIFIERS = new Map<string, TokenKind>([
 	["+", TokenKind.Plus],

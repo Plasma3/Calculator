@@ -66,7 +66,7 @@ var Lexer = /** @class */ (function () {
                     value: this.current_char
                 });
             }
-            else if (this.match(C.LETTERS)) {
+            else if (this.match(C.WORD_START)) {
                 tokens.push(this.make_word());
             }
             else {
@@ -152,7 +152,17 @@ var Lexer = /** @class */ (function () {
     };
     ;
     Lexer.prototype.make_word = function () {
-        throw new Error("Method not implemented.");
+        var word = this.current_char;
+        var pos_start = __assign({}, this.iter);
+        while (this.next_char && C.WORD_LETTERS.includes(this.next_char)) {
+            this.advance();
+            word += this.current_char;
+        }
+        return {
+            tokenKind: TokenKind.WORD,
+            location: new Location(pos_start, this.iter.colum),
+            value: word
+        };
     };
     ;
     return Lexer;

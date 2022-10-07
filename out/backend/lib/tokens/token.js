@@ -11,7 +11,7 @@ export var TokenKind;
     TokenKind[TokenKind["CloseParen"] = 8] = "CloseParen";
     TokenKind[TokenKind["Equal"] = 9] = "Equal";
     TokenKind[TokenKind["Comma"] = 10] = "Comma";
-    TokenKind[TokenKind["Word"] = 11] = "Word";
+    TokenKind[TokenKind["WORD"] = 11] = "WORD";
     TokenKind[TokenKind["EOL"] = 12] = "EOL";
     TokenKind[TokenKind["EOF"] = 13] = "EOF";
     TokenKind[TokenKind["TAB"] = 14] = "TAB";
@@ -26,7 +26,7 @@ export function stringifyTokens(tokens) {
             out += '\n';
         }
         else {
-            out += ((i.tokenKind === TokenKind.INT || i.tokenKind === TokenKind.FLOAT) ? i.value : TokenKind[i.tokenKind]) + ' ';
+            out += ((i.tokenKind === TokenKind.WORD) ? "(".concat(i.value, ")") : ((i.tokenKind === TokenKind.INT || i.tokenKind === TokenKind.FLOAT) ? i.value : TokenKind[i.tokenKind])) + ' ';
         }
         // else if (i.tokenKind === TokenKind.INT || i.tokenKind === TokenKind.FLOAT) {
         // 	out += i.value + ' ';	
