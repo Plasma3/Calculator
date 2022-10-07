@@ -1,3 +1,4 @@
+"use strict";
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -9,17 +10,18 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { DIGITS_DOT, DOT, EMPTY_SKIP, SIMPLE_TOKEN_IDENTIFIERS } from "./constants";
-import { IllegalCharError, throw_error } from "../classes/errors";
-import { getPos, Location } from "../classes/position";
-import { TokenKind } from "../tokens/token";
+Object.defineProperty(exports, "__esModule", { value: true });
+var constants_1 = require("./constants");
+var errors_1 = require("../classes/errors");
+var position_1 = require("../classes/position");
+var token_1 = require("../tokens/token");
 var Lexer = /** @class */ (function () {
     function Lexer() {
         this.line = "";
         this.current_char = null;
         this.next_char = null;
         this.previous_char = null;
-        this.iter = getPos('', 0, 0, 0);
+        this.iter = (0, position_1.getPos)('', 0, 0, 0);
     }
     // private line_index: number = 0;
     Lexer.prototype.lex_file = function (filepath) {
@@ -46,8 +48,8 @@ var Lexer = /** @class */ (function () {
             line_number++;
         }
         tokens.push({
-            tokenKind: TokenKind.EOF,
-            location: new Location(this.iter, this.iter.colum)
+            tokenKind: token_1.TokenKind.EOF,
+            location: new position_1.Location(this.iter, this.iter.colum)
         });
         return [tokens, null];
     };
@@ -55,27 +57,27 @@ var Lexer = /** @class */ (function () {
         var tokens = [];
         this.init_line(line_number, acc_offset, line);
         while (this.current_char !== null) {
-            if (this.match(EMPTY_SKIP)) { }
-            else if (this.match(DIGITS_DOT)) {
+            if (this.match(constants_1.EMPTY_SKIP)) { }
+            else if (this.match(constants_1.DIGITS_DOT)) {
                 tokens.push(this.make_number());
             }
-            else if (SIMPLE_TOKEN_IDENTIFIERS.has(this.current_char)) {
+            else if (constants_1.SIMPLE_TOKEN_IDENTIFIERS.has(this.current_char)) {
                 tokens.push({
-                    tokenKind: SIMPLE_TOKEN_IDENTIFIERS.get(this.current_char),
-                    location: new Location(this.iter, this.iter.colum),
+                    tokenKind: constants_1.SIMPLE_TOKEN_IDENTIFIERS.get(this.current_char),
+                    location: new position_1.Location(this.iter, this.iter.colum),
                     value: this.current_char
                 });
             }
             else {
-                var err = new IllegalCharError(this.loc_current_char(), "\"".concat(this.current_char, "\""));
-                throw_error(err, line, true);
+                var err = new errors_1.IllegalCharError(this.loc_current_char(), "\"".concat(this.current_char, "\""));
+                (0, errors_1.throw_error)(err, line, true);
                 return err;
             }
             this.advance();
         }
         tokens.push({
-            tokenKind: TokenKind.EOL,
-            location: new Location(this.iter, this.iter.colum)
+            tokenKind: token_1.TokenKind.EOL,
+            location: new position_1.Location(this.iter, this.iter.colum)
         });
         return tokens;
     };
@@ -116,7 +118,7 @@ var Lexer = /** @class */ (function () {
     };
     ;
     Lexer.prototype.loc_current_char = function () {
-        return new Location(this.iter, this.iter.colum);
+        return new position_1.Location(this.iter, this.iter.colum);
     };
     Lexer.prototype.make_number = function () {
         var num_str = '';
@@ -124,30 +126,30 @@ var Lexer = /** @class */ (function () {
         var pos_start = __assign({}, this.iter);
         var continue_loop = false;
         do {
-            if (this.current_char === DOT) {
+            if (this.current_char === constants_1.DOT) {
                 if (dot_count) {
                     break;
                 }
                 dot_count = true;
-                num_str += DOT;
+                num_str += constants_1.DOT;
             }
             else {
                 num_str += this.current_char;
             }
             continue_loop = false;
-            if (this.next_char && DIGITS_DOT.includes(this.next_char)) {
+            if (this.next_char && constants_1.DIGITS_DOT.includes(this.next_char)) {
                 this.advance();
                 continue_loop = true;
             }
         } while (continue_loop);
         return {
-            tokenKind: (dot_count) ? TokenKind.FLOAT : TokenKind.INT,
-            location: new Location(pos_start, this.iter.colum),
+            tokenKind: (dot_count) ? token_1.TokenKind.FLOAT : token_1.TokenKind.INT,
+            location: new position_1.Location(pos_start, this.iter.colum),
             value: num_str
         };
     };
     ;
     return Lexer;
 }());
-export default Lexer;
+exports.default = Lexer;
 //# sourceMappingURL=lexer.js.map

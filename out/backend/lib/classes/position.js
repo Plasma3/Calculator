@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -13,6 +14,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getPos = exports.Location = exports.Position = void 0;
 var Position = /** @class */ (function () {
     function Position(pos) {
         this.context = pos.context;
@@ -24,7 +27,7 @@ var Position = /** @class */ (function () {
     Position.prototype.copy = function () { };
     return Position;
 }());
-export { Position };
+exports.Position = Position;
 var Location = /** @class */ (function (_super) {
     __extends(Location, _super);
     function Location(pos, end_col, end_line) {
@@ -37,8 +40,8 @@ var Location = /** @class */ (function (_super) {
     }
     return Location;
 }(Position));
-export { Location };
-export function getPos(context, index, line, colum) {
+exports.Location = Location;
+function getPos(context, index, line, colum) {
     return {
         context: context,
         index: index,
@@ -46,6 +49,7 @@ export function getPos(context, index, line, colum) {
         colum: colum
     };
 }
+exports.getPos = getPos;
 // let y = new Location({context: "", colum: 0, index: 0, line: 0}, 0);
 // let z = {...y};
 // z.colum = 1;

@@ -10,6 +10,8 @@ export enum TokenKind {
 
     Equal, Comma,
 
+    Word,
+
     EOL, EOF, TAB
 }
 
