@@ -1,7 +1,5 @@
-"use strict";
 // TODO: Layout Parser design
 // TODO: Deterine what i/o and internals it should contain
-Object.defineProperty(exports, "__esModule", { value: true });
 var Parser = /** @class */ (function () {
     function Parser() {
         this.tokens = [];
@@ -12,5 +10,5 @@ var Parser = /** @class */ (function () {
     };
     return Parser;
 }());
-exports.default = Parser;
+export default Parser;
 //# sourceMappingURL=parser.js.map

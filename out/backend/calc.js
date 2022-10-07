@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var lexer_1 = __importDefault(require("./lib/lexer/lexer"));
-var token_1 = require("./lib/tokens/token");
-function calc(input) {
+import Lexer from "./lib/lexer/lexer";
+import { stringifyTokens } from "./lib/tokens/token";
+export default function calc(input) {
     // let input =
     // `2+ 5 -2(2*2+2)=123
     // 2 3,2.1
@@ -14,13 +9,13 @@ function calc(input) {
     console.group("New instance of ".concat(ctx, " at ").concat((new Date()).toLocaleString()));
     console.log("> ".concat(input));
     console.log("===");
-    var lexer = new lexer_1.default();
+    var lexer = new Lexer();
     var x = lexer.lex_string(ctx, input);
     var output = "";
     if (x[1] === null) {
         console.log("     no errors");
         console.log("===");
-        output = (0, token_1.stringifyTokens)(x[0]);
+        output = stringifyTokens(x[0]);
         console.log(output);
     }
     else {
@@ -31,5 +26,4 @@ function calc(input) {
     console.groupEnd();
     return output;
 }
-exports.default = calc;
 //# sourceMappingURL=calc.js.map

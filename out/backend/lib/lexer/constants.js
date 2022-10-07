@@ -1,26 +1,23 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SIMPLE_TOKEN_IDENTIFIERS = exports.DIGITS_DOT = exports.LETTERS_DIGITS = exports.LETTERS = exports.DIGITS = exports.EMPTY_SKIP = exports.NEWLINE = exports.DOT = exports.PAM_CONSOLE_IDENTITY = void 0;
-var token_1 = require("../tokens/token");
-exports.PAM_CONSOLE_IDENTITY = "[PAM] : ";
-exports.DOT = ".";
-exports.NEWLINE = "\n";
-exports.EMPTY_SKIP = " \t";
-exports.DIGITS = "1234567890";
-exports.LETTERS = "abcdefghijklmnopqrstuvwxyz";
-exports.LETTERS_DIGITS = exports.DIGITS + exports.LETTERS;
-exports.DIGITS_DOT = exports.DIGITS + exports.DOT;
-exports.SIMPLE_TOKEN_IDENTIFIERS = new Map([
-    ["+", token_1.TokenKind.Plus],
-    ["-", token_1.TokenKind.Minus],
-    ["*", token_1.TokenKind.Mul],
-    ["/", token_1.TokenKind.Div],
-    ["^", token_1.TokenKind.Pow],
-    ["(", token_1.TokenKind.OpenParen],
-    [")", token_1.TokenKind.CloseParen],
-    ["=", token_1.TokenKind.Equal],
-    [",", token_1.TokenKind.Comma],
-    ["\n", token_1.TokenKind.EOL],
-    ["\t", token_1.TokenKind.TAB],
+import { TokenKind } from "../tokens/token";
+export var PAM_CONSOLE_IDENTITY = "[PAM] : ";
+export var DOT = ".";
+export var NEWLINE = "\n";
+export var EMPTY_SKIP = " \t";
+export var DIGITS = "1234567890";
+export var LETTERS = "abcdefghijklmnopqrstuvwxyz";
+export var LETTERS_DIGITS = DIGITS + LETTERS;
+export var DIGITS_DOT = DIGITS + DOT;
+export var SIMPLE_TOKEN_IDENTIFIERS = new Map([
+    ["+", TokenKind.Plus],
+    ["-", TokenKind.Minus],
+    ["*", TokenKind.Mul],
+    ["/", TokenKind.Div],
+    ["^", TokenKind.Pow],
+    ["(", TokenKind.OpenParen],
+    [")", TokenKind.CloseParen],
+    ["=", TokenKind.Equal],
+    [",", TokenKind.Comma],
+    ["\n", TokenKind.EOL],
+    ["\t", TokenKind.TAB],
 ]);
 //# sourceMappingURL=constants.js.map
