@@ -10,7 +10,7 @@ export default class Parser {
     private tokens: Tokens = [];
 
     public parseTokens(context: string, tokens: Tokens): ParserResult {
-        console.log(tokens);
+        console.table(tokens);
 
 
 

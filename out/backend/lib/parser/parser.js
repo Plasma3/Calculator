@@ -5,7 +5,7 @@ var Parser = /** @class */ (function () {
         this.tokens = [];
     }
     Parser.prototype.parseTokens = function (context, tokens) {
-        console.log(tokens);
+        console.table(tokens);
         return [null, null];
     };
     return Parser;
